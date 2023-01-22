@@ -14,19 +14,21 @@
     </header>
 
     <main>
-        
-            <div id="inputForm">
+        <article>
+            <section id="inputForm">
+                <h2>Log a book</h2>
                 <label for="title">Title: <input name="title" id="title" type="text"></label>
                 <label for="author">Author: <input name="author" id="author" type="text"></label>
                 <label for="pageCount">Page Count: <input name="pageCount" id="pageCount" type="number"></label>
                 <input type="checkbox" name="read" id="read" checked>
                 <input type="date" name="startDate" id="startDate">
                 <input type="date" name="endDate" id="endDate">
-            </div>
+            </section>
         
-        <div id="bookTableDiv">
+        <section id="bookTableSection">
+            <h2>Personal Library</h2>
         <table id="bookTable">
-            <caption id="btCaption">Books In My Record</caption>
+            <caption id="btCaption">Books Overview</caption>
             <tr>
                 <td>Redwall, Brian Jacques</td>
                 <td>351 Pages</td>
@@ -35,7 +37,9 @@
             </tr>
 
         </table>
-        <div>
+        <section>
+            <h2>Library</h2>
+        </article>
     </main>
 </body>
 </html>
