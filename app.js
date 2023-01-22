@@ -33,37 +33,40 @@ function createBook(title, author, pages, read, start, end) {
 }
 
 function renderPersonalLibrary(book) {
+  let tempR = document.createElement("tr");
+  let tempD1 = document.createElement("td");
+  let tempD2 = document.createElement("td");
+  let tempD3 = document.createElement("td");
+  let tempD4 = document.createElement("td");
+  let tempStart = Date.parse(book.start);
+  let tempEnd = Date.parse(book.end);
+  let daysToRead = calcDays(tempEnd, tempStart);
+  let pagesPerDay = Math.round(book.pages / daysToRead);
+  let currentDate = Date.now();
+  let formattedStart = formatDate(tempStart, currentDate);
+  console.log(currentDate);
+  console.log(book.start, tempStart);
 
-  
-    let tempR = document.createElement("tr");
-    let tempD1 = document.createElement("td");
-    let tempD2 = document.createElement("td");
-    let tempD3 = document.createElement("td");
-    let tempD4 = document.createElement("td");
-    let tempStart = Date.parse(book.start);
-    let tempEnd = Date.parse(book.end);
-    console.log(tempStart);
+  tempD1.textContent = `${book.title}, ${book.author}`;
+  tempD2.textContent = `${book.pages} Pages`;
 
-    tempD1.textContent = `${book.title}, ${book.author}`;
-    tempD2.textContent = `${book.pages} Pages`;
-    tempD4.textContent = `It took you ${tempStart} days to read ${book.title}. You averaged ${tempEnd} pages read a day.`;
+  if (book.read) {
+    tempD3.textContent = `\u2705`;
+    tempD4.textContent = `It took you ${daysToRead} days to read ${book.title}. You averaged ${pagesPerDay} pages read a day.`;
+  } else {
+    tempD3.textContent = `\u274C`;
+    tempD4.textContent = `You started reading this book on ${formattedStart}, keep at it!`;
+  }
 
-    if (book.read) {
-      tempD3.textContent = `\u2705`;
-    } else {
-      tempD3.textContent = `\u274C`;
-    }
-
-    bookTable.appendChild(tempR);
-    tempR.appendChild(tempD1);
-    tempR.appendChild(tempD2);
-    tempR.appendChild(tempD3);
-    tempR.appendChild(tempD4);    
-  
+  bookTable.appendChild(tempR);
+  tempR.appendChild(tempD1);
+  tempR.appendChild(tempD2);
+  tempR.appendChild(tempD3);
+  tempR.appendChild(tempD4);
 }
 
-function bindAndStore() {
-  //event.preventDefault();
+function bindAndStore(event) {
+  event.preventDefault();
   let newBook = createBook(
     titleInput,
     authorInput,
@@ -74,6 +77,36 @@ function bindAndStore() {
   );
 
   library.push(newBook);
-  console.log(library);  
+  console.log(library);
   renderPersonalLibrary(newBook);
+}
+
+function formatDate(dateString, adjustment) {
+  let exactDate = calcAdjustment(dateString, adjustment);
+  let date = new Date(exactDate);
+
+  let options = {
+    month: "long",
+    day: "numeric",
+    year: "numeric",
+  };
+
+  let formatted = date.toLocaleString("en-US", options);
+  return formatted;
+}
+
+function calcDays(utc1, utc2) {
+  let oneDay = 86400000;
+
+  let daysDiff = Math.floor((utc1 - utc2) / oneDay);
+
+  return daysDiff;
+}
+
+function calcAdjustment(utc1, utc2) {
+  let oneDay = 86400000;
+  let diff = utc2 - utc1;
+  let days = Math.floor(diff / oneDay);
+  let left = diff - days * oneDay;
+  return utc1 + left;
 }
