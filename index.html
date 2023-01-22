@@ -14,7 +14,7 @@
     </header>
 
     <main>
-        <div>
+        
             <div id="inputForm">
                 <label for="title">Title: <input name="title" id="title" type="text"></label>
                 <label for="author">Author: <input name="author" id="author" type="text"></label>
@@ -23,9 +23,18 @@
                 <input type="date" name="startDate" id="startDate">
                 <input type="date" name="endDate" id="endDate">
             </div>
-        </div>
-        <div>
-        <table></table>
+        
+        <div id="bookTableDiv">
+        <table id="bookTable">
+            <caption id="btCaption">Books In My Record</caption>
+            <tr>
+                <td>Redwall, Brian Jacques</td>
+                <td>351 Pages</td>
+                <td><input type="checkbox" name="btCheck" id=""></td>
+                <td>It took you 13 days to read Redwall. You averaged 27 pages read a day.</td>
+            </tr>
+
+        </table>
         <div>
     </main>
 </body>
