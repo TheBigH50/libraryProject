@@ -1,46 +1,54 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>libraryProject</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style.css" />
     <script src="app.js" defer></script>
-</head>
-<body>
+  </head>
+  <body>
     <header>
-        <h1>"Reading Tracker"</h1>
+      <h1>"Reading Tracker"</h1>
     </header>
 
     <main>
-        <article>
-            <section id="inputForm">
-                <h2>Log a book</h2>
-                <label for="title">Title: <input name="title" id="title" type="text"></label>
-                <label for="author">Author: <input name="author" id="author" type="text"></label>
-                <label for="pageCount">Page Count: <input name="pageCount" id="pageCount" type="number"></label>
-                <label for="read">Finished Reading? <input type="checkbox" name="read" id="checkBox" checked></label>
-                <label for ="startDate">Dated Started: <input type="date" name="startDate" id="startDate"></label>
-                <label for ="endDate">Dated Finished: <input type="date" name="endDate" id="endDate"></label>
-                <button type="submit" id="addBook">Add Book</button>
-            </section>
-        
-        <section id="bookTableSection">
-            <h2>Personal Library</h2>
-        <table id="bookTable">
-            <caption id="btCaption">Books Overview</caption>
-            <tr>
-                <td>Redwall, Brian Jacques</td>
-                <td>351 Pages</td>
-                <td>&#x2705</td>
-                <td>It took you 13 days to read Redwall. You averaged 27 pages read a day.</td>
-            </tr>
+      <article>
+        <section id="inputForm">
+          <h2>Log a book</h2>
+          <label for="title"
+            >Title: <input name="title" id="title" type="text"
+          /></label>
+          <label for="author"
+            >Author: <input name="author" id="author" type="text"
+          /></label>
+          <label for="pageCount"
+            >Page Count: <input name="pageCount" id="pageCount" type="number"
+          /></label>
+          <label for="read"
+            >Finished Reading?
+            <input type="checkbox" name="read" id="checkBox" checked
+          /></label>
+          <label for="startDate"
+            >Dated Started: <input type="date" name="startDate" id="startDate"
+          /></label>
+          <label for="endDate"
+            >Dated Finished: <input type="date" name="endDate" id="endDate"
+          /></label>
+          <button type="submit" id="addBook">Add Book</button>
+        </section>
 
-        </table>
-        <section>
-            <h2>Library</h2>
-        </article>
+        <section id="bookTableSection">
+          <h2>Personal Library</h2>
+          <table id="bookTable">
+            <caption id="btCaption">
+              Books Overview
+            </caption>
+          </table>
+        </section>
+        <h2>Library</h2>
+      </article>
     </main>
-</body>
+  </body>
 </html>

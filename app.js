@@ -15,6 +15,7 @@ let tableRows = document.getElementsByTagName("tr");
 let library = [];
 
 addBook.addEventListener("click", bindAndStore);
+document.addEventListener("readystatechange", getLibrary);
 
 class Book {
   constructor(title, author, pages, read, start, end) {
@@ -79,6 +80,7 @@ function bindAndStore(event) {
   library.push(newBook);
   console.log(library);
   renderPersonalLibrary(newBook);
+  storeLibrary();
 }
 
 function formatDate(dateString, adjustment) {
@@ -109,4 +111,19 @@ function calcAdjustment(utc1, utc2) {
   let days = Math.floor(diff / oneDay);
   let left = diff - days * oneDay;
   return utc1 + left;
+}
+
+function storeLibrary() {
+  window.localStorage.removeItem("library");
+  let jsonObj = JSON.stringify(library);
+  localStorage.setItem("library", jsonObj);
+}
+
+function getLibrary() {
+  let jsonObj = window.localStorage.getItem("library");
+  let parsed = JSON.parse(jsonObj);
+  parsed.forEach((a) => {
+    library.push(a);
+    renderPersonalLibrary(a);
+  });
 }
