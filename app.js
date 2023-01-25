@@ -66,6 +66,8 @@ function renderPersonalLibrary(book) {
   tempR.appendChild(tempD4);
 }
 
+// This code is responsible for binding an event to the submit button and storing the data in the library. The bindAndStore() function takes the input data from the form and creates a new book object, which is then pushed to the library array. The renderPersonalLibrary() function is then called to render the new book object. Finally, the storeLibrary() function is called to store the library array in the localStorage.
+
 function bindAndStore(event) {
   event.preventDefault();
   let newBook = createBook(
@@ -82,6 +84,8 @@ function bindAndStore(event) {
   renderPersonalLibrary(newBook);
   storeLibrary();
 }
+
+// This code is responsible for formatting a date string, calculating the difference between two dates, and calculating an adjustment for a date. The formatDate() function takes a date string and an adjustment, calculates the adjusted date, and formats it for display. The calcDays() function calculates the difference between two dates. The calcAdjustment() function calculates the adjustment for a date to account for timezone difference vs UTC.
 
 function formatDate(dateString, adjustment) {
   let exactDate = calcAdjustment(dateString, adjustment);
@@ -112,6 +116,8 @@ function calcAdjustment(utc1, utc2) {
   let left = diff - days * oneDay;
   return utc1 + left;
 }
+
+// This code is responsible for storing data in the browser's localStorage, and for retrieving the data from localStorage. The storeLibrary() function takes data from the 'library' variable and converts it to a JSON object which is then stored in localStorage using setItem(). The getLibrary() function retrieves the JSON object from localStorage using getItem() and parses the data. The parsed data is then added back to the 'library' variable and is rendered using the renderPersonalLibrary() function.
 
 function storeLibrary() {
   window.localStorage.removeItem("library");
