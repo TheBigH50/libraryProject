@@ -1,0 +1,27 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+}
+
+#updateModalBack {
+    position: absolute;
+    top: 0;
+    left: 0;
+    min-height: 100vh;
+    min-width: 100vw;
+    z-index: 1;
+    background-color: rgba(62, 61, 97, 0.678);
+}
+
+#updateModalCard {
+    position: fixed;
+    top: 25vh;
+    left: 25vw;
+    min-height: 50vh;
+    min-width: 50vw;
+    z-index: 2;
+    background-color: bisque;    
+}

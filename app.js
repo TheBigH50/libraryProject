@@ -1,5 +1,6 @@
 console.log("Hello World!");
 
+let modalPlacement = document.getElementById("modalHere");
 let inputForm = document.getElementById("inputForm");
 let titleInput = document.getElementById("title");
 let authorInput = document.getElementById("author");
@@ -139,16 +140,18 @@ function getLibrary() {
 function updateModal() {
   let updateModalBack = document.createElement("div");
   let updateModalCard = document.createElement("div");
-let modalPara = document.createElement("p");
-let close  = document.createElement("button");
+  let modalForm = document.createElement("form");
+  let close = document.createElement("button");
 
-  
+  close.textContent= "X";
+  close.addEventListener("click", () => {
+    updateModalBack.remove();
+  });
   updateModalBack.id = "updateModalBack";
   updateModalCard.id = "updateModalCard";
 
-
-  bookTableSection.appendChild(updateModalBack);
+  modalPlacement.appendChild(updateModalBack);
   updateModalBack.appendChild(updateModalCard);
-  updateModalCard.appendChild(modalPara);
+  updateModalCard.appendChild(modalForm);
   updateModalCard.appendChild(close);
 }
