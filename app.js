@@ -48,6 +48,8 @@ function renderPersonalLibrary(book) {
   console.log(currentDate);
   console.log(book.start, tempStart);
 
+  tempR.addEventListener("click", updateModal);
+
   tempD1.textContent = `${book.title}, ${book.author}`;
   tempD2.textContent = `${book.pages} Pages`;
 
@@ -132,4 +134,21 @@ function getLibrary() {
     library.push(a);
     renderPersonalLibrary(a);
   });
+}
+
+function updateModal() {
+  let updateModalBack = document.createElement("div");
+  let updateModalCard = document.createElement("div");
+let modalPara = document.createElement("p");
+let close  = document.createElement("button");
+
+  
+  updateModalBack.id = "updateModalBack";
+  updateModalCard.id = "updateModalCard";
+
+
+  bookTableSection.appendChild(updateModalBack);
+  updateModalBack.appendChild(updateModalCard);
+  updateModalCard.appendChild(modalPara);
+  updateModalCard.appendChild(close);
 }
