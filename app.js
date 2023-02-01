@@ -42,12 +42,16 @@ function renderPersonalLibrary(book) {
   let tempD4 = document.createElement("td");
   let tempStart = Date.parse(book.start);
   let tempEnd = Date.parse(book.end);
+  console.log("tempEnd:", tempEnd);
   let daysToRead = calcDays(tempEnd, tempStart);
   let pagesPerDay = Math.round(book.pages / daysToRead);
   let currentDate = Date.now();
   let formattedStart = formatDate(tempStart, currentDate);
   console.log(currentDate);
   console.log(book.start, tempStart);
+
+  tempR.id = `${book.title}`;
+  console.log(tempR.id);
 
   tempR.addEventListener("click", updateModal);
 
@@ -137,21 +141,53 @@ function getLibrary() {
   });
 }
 
-function updateModal() {
+function updateModal(event) {
+  
   let updateModalBack = document.createElement("div");
   let updateModalCard = document.createElement("div");
   let modalForm = document.createElement("form");
+  let modalInputLabel = document.createElement("label");
+  let modalInput = document.createElement("input");
+  let updateBtn = document.createElement("button");
   let close = document.createElement("button");
+  let tempID = event.target.parentElement.id;
 
-  close.textContent= "X";
+  modalInput.type = "date";
+  modalInput.name = "modalInput";
+  modalInput.id = "modalInput";
+  modalInputLabel.for = "modalInput";
+  modalInputLabel.textContent = "Date Finished";
+  updateBtn.textContent = "Finished Reading";
+
+  close.textContent = "X";
   close.addEventListener("click", () => {
     updateModalBack.remove();
   });
+
+  updateBtn.addEventListener("click", () => {
+    
+    library.forEach((a) => {
+      console.log(a.title);
+      if(a.title == tempID) {
+            a.end = modalInput.valueAsDate;
+            a.read = true;
+            console.log("endDateOfA:", a.endDate)
+      };      
+    });
+    bookTable.remove();
+    storeLibrary();
+    getLibrary();    
+    updateModal.remove();
+  });
+
   updateModalBack.id = "updateModalBack";
   updateModalCard.id = "updateModalCard";
 
   modalPlacement.appendChild(updateModalBack);
   updateModalBack.appendChild(updateModalCard);
   updateModalCard.appendChild(modalForm);
+  modalForm.appendChild(modalInputLabel);
+  modalForm.appendChild(modalInput);
+  modalForm.appendChild(updateBtn);
   updateModalCard.appendChild(close);
 }

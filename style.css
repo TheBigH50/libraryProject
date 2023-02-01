@@ -25,3 +25,9 @@ body {
     z-index: 2;
     background-color: bisque;    
 }
+
+#inputForm {
+    
+    max-width: 800px;    
+    
+}
