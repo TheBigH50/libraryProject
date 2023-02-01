@@ -142,7 +142,6 @@ function getLibrary() {
 }
 
 function updateModal(event) {
-  
   let updateModalBack = document.createElement("div");
   let updateModalCard = document.createElement("div");
   let modalForm = document.createElement("form");
@@ -165,18 +164,17 @@ function updateModal(event) {
   });
 
   updateBtn.addEventListener("click", () => {
-    
     library.forEach((a) => {
       console.log(a.title);
-      if(a.title == tempID) {
-            a.end = modalInput.valueAsDate;
-            a.read = true;
-            console.log("endDateOfA:", a.endDate)
-      };      
+      if (a.title == tempID) {
+        a.end = modalInput.valueAsDate;
+        a.read = true;
+        console.log("endDateOfA:", a.endDate);
+      }
     });
     bookTable.remove();
     storeLibrary();
-    getLibrary();    
+    getLibrary();
     updateModal.remove();
   });
 
@@ -191,3 +189,28 @@ function updateModal(event) {
   modalForm.appendChild(updateBtn);
   updateModalCard.appendChild(close);
 }
+
+function fetchBookID() {
+  let tempData = [];
+
+  fetch(`https://openlibrary.org/search.json?q=title:Redwall&limit=1`)
+    .then((res) => res.json())
+    .then((data) => {      
+      return tempData = data;
+    })
+    .catch((err) => console.error(err));
+    
+}
+
+function fetchCoverArt(id) {
+
+let tempData = [];
+var tempImg = new Image();
+
+fetch(`https://covers.openlibrary.org/b/id/2325082-M.jpg`)
+.then((res) => tempImg.src = res)
+.then ()
+
+}
+
+fetchBookID();
