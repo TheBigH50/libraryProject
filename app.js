@@ -57,9 +57,10 @@ function renderPersonalLibrary(book) {
   
     thumbnail.src = `${book.imgURL}`;
     thumbnail.alt = `${book.title} cover art`;
-    thumbnail.height = "25";
-    thumbnail.width = "25";
-  
+    thumbnail.height = "45";
+    thumbnail.width = "37";
+    thumbnail.id = `${book.title}_img_img`
+  tempD5.id = `${book.title}_img_td`
   tempR.setAttribute("imgURL", `${book.imgURL}`);
   tempR.setAttribute("imgALT", `${book.title} cover art`);
   tempR.setAttribute("imgH", `${book.imgH}`);
@@ -190,6 +191,7 @@ function updateModal(event) {
   img.height = event.target.parentElement.getAttribute("imgH");
   img.width = event.target.parentElement.getAttribute("imgW");
   
+
   modalInput.type = "date";
   modalInput.name = "modalInput";
   modalInput.id = "modalInput";
@@ -262,5 +264,18 @@ async function fetchAndSetBookCover(title, img) {
     }
   });
   storeLibrary();
+  updateThumbnail(title, img);
 }
 
+function updateThumbnail (title, img) {
+  let tempR = document.getElementById(`${title}_img_td`);
+  let tempChild = document.getElementById(`${title}_img_img`);
+  let tempImg = document.createElement("img");
+tempImg.src = img.src;
+tempImg.alt = `${title} cover art`;
+tempImg.height = "45";
+tempImg.width = "37";
+
+  tempR.removeChild(tempChild);
+  tempR.appendChild(tempImg);
+}
