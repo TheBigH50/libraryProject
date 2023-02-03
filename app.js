@@ -163,16 +163,15 @@ function storeLibrary() {
 /* The getLibrary function retrieves the "library" item from local storage, parses it back into an object, and adds each element to the library array. The function then calls the renderPersonalLibrary function for each element in the parsed object. */
 function getLibrary() {
   try {
-  let jsonObj = window.localStorage.getItem("library");
-  let parsed = JSON.parse(jsonObj);
-  parsed.forEach((a) => {
-    library.push(a);
-    renderPersonalLibrary(a);
-  });
-}
-catch(error) {
-  console.log("Please add your first book!");
-};
+    let jsonObj = window.localStorage.getItem("library");
+    let parsed = JSON.parse(jsonObj);
+    parsed.forEach((a) => {
+      library.push(a);
+      renderPersonalLibrary(a);
+    });
+  } catch (error) {
+    console.log("Please add your first book!");
+  }
 }
 
 /* The updateModal function creates and adds an update modal element to the modalPlacement element in the DOM. The modal contains a form with a date input and buttons to "Finished Reading" and "X" (to close the modal). When the "Finished Reading" button is clicked, the modal updates the end date and the read status of the corresponding book in the library array. The function then calls storeLibrary to update the "library" item in local storage, calls getLibrary to retrieve and display the updated library, and removes the modal. */
@@ -273,14 +272,14 @@ async function fetchAndSetBookCover(title, img) {
       }
     });
     storeLibrary();
-    updateThumbnail(title, img);
+    updateThumbnailAndParent(title, img);
   } catch (error) {
     console.error(error);
     storeLibrary();
   }
 }
 
-function updateThumbnail(title, img) {
+function updateThumbnailAndParent(title, img) {
   let tempR = document.getElementById(`${title}_img_td`);
   let tempChild = document.getElementById(`${title}_img_img`);
   let tempImg = document.createElement("img");
@@ -288,6 +287,12 @@ function updateThumbnail(title, img) {
   tempImg.alt = `${title} cover art`;
   tempImg.height = "45";
   tempImg.width = "37";
+
+  tempR.parentElement.setAttribute("imgURL", `${img.src}`);
+  tempR.parentElement.setAttribute("imgALT", `${title} cover art`);
+  tempR.parentElement.setAttribute("imgH", `${img.height}`);
+  tempR.parentElement.setAttribute("imgW", `${img.width}`);
+  tempR.parentElement.id = `${title}`;
 
   tempR.removeChild(tempChild);
   tempR.appendChild(tempImg);
