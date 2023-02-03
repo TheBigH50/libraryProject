@@ -276,6 +276,7 @@ async function fetchAndSetBookCover(title, img) {
     updateThumbnail(title, img);
   } catch (error) {
     console.error(error);
+    storeLibrary();
   }
 }
 
