@@ -259,6 +259,7 @@ async function fetchAndSetBookCover(title, img) {
         `${title} cover art id not found, no cover art available`
       );
     }
+    console.log("FETCH ONE RAN")
     img = await fetchImage(
       `https://covers.openlibrary.org/b/id/${tempID}-M.jpg`
     );
@@ -271,14 +272,14 @@ async function fetchAndSetBookCover(title, img) {
         a.imgW = img.width;
       }
     });
-    console.log("FETCH RAN")
+    console.log("FETCH TWO RAN")
   } catch (error) {
     console.error(error);
     storeLibrary();
   }
   storeLibrary();
   console.log("STORE RAN")
-  updateThumbnailAndParent(title, img);
+  updateThumbnailAndParent(title, img); 
 }
 
 function updateThumbnailAndParent(title, img) {
@@ -290,6 +291,8 @@ function updateThumbnailAndParent(title, img) {
   tempImg.height = "45";
   tempImg.width = "37";
 
+/*   This is bugged right now, when built and deployed, it needs to re-render the entire tr to get attributes.
+ */
   tempR.parentElement.setAttribute("imgURL", `${img.src}`);
   tempR.parentElement.setAttribute("imgALT", `${title} cover art`);
   tempR.parentElement.setAttribute("imgH", `${img.height}`);
@@ -297,5 +300,5 @@ function updateThumbnailAndParent(title, img) {
   tempR.parentElement.id = `${title}`;
 
   tempR.removeChild(tempChild);
-  tempR.appendChild(tempImg);
+  tempR.appendChild(tempImg);  
 }
