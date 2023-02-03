@@ -271,12 +271,14 @@ async function fetchAndSetBookCover(title, img) {
         a.imgW = img.width;
       }
     });
-    storeLibrary();
-    updateThumbnailAndParent(title, img);
+    console.log("FETCH RAN")
   } catch (error) {
     console.error(error);
     storeLibrary();
   }
+  storeLibrary();
+  console.log("STORE RAN")
+  updateThumbnailAndParent(title, img);
 }
 
 function updateThumbnailAndParent(title, img) {
