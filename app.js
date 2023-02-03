@@ -14,9 +14,7 @@ let bookTable = document.getElementById("bookTable");
 let btCaption = document.getElementById("btCaption");
 let tableRows = document.getElementsByTagName("tr");
 let library = [];
-let bookSVG = 
-
-addBook.addEventListener("click", bindAndStore);
+let bookSVG = addBook.addEventListener("click", bindAndStore);
 document.addEventListener("readystatechange", getLibrary);
 
 class Book {
@@ -54,13 +52,13 @@ function renderPersonalLibrary(book) {
   let formattedStart = formatDate(tempStart, currentDate);
   console.log(currentDate);
   console.log(book.start, tempStart);
-  
-    thumbnail.src = `${book.imgURL}`;
-    thumbnail.alt = `${book.title} cover art`;
-    thumbnail.height = "45";
-    thumbnail.width = "37";
-    thumbnail.id = `${book.title}_img_img`
-  tempD5.id = `${book.title}_img_td`
+
+  thumbnail.src = `${book.imgURL}`;
+  thumbnail.alt = `${book.title} cover art`;
+  thumbnail.height = "45";
+  thumbnail.width = "37";
+  thumbnail.id = `${book.title}_img_img`;
+  tempD5.id = `${book.title}_img_td`;
   tempR.setAttribute("imgURL", `${book.imgURL}`);
   tempR.setAttribute("imgALT", `${book.title} cover art`);
   tempR.setAttribute("imgH", `${book.imgH}`);
@@ -101,7 +99,6 @@ function renderPersonalLibrary(book) {
       thumbnail = book.imgURL;
   tempD5.appendChild(thumbnail);
     }; */
-  
 }
 
 // This code is responsible for binding an event to the submit button and storing the data in the library. The bindAndStore() function takes the input data from the form and creates a new book object, which is then pushed to the library array. The renderPersonalLibrary() function is then called to render the new book object. Finally, the storeLibrary() function is called to store the library array in the localStorage.
@@ -165,12 +162,17 @@ function storeLibrary() {
 
 /* The getLibrary function retrieves the "library" item from local storage, parses it back into an object, and adds each element to the library array. The function then calls the renderPersonalLibrary function for each element in the parsed object. */
 function getLibrary() {
+  try {
   let jsonObj = window.localStorage.getItem("library");
   let parsed = JSON.parse(jsonObj);
   parsed.forEach((a) => {
     library.push(a);
     renderPersonalLibrary(a);
   });
+}
+catch(error) {
+  console.log("Please add your first book!");
+};
 }
 
 /* The updateModal function creates and adds an update modal element to the modalPlacement element in the DOM. The modal contains a form with a date input and buttons to "Finished Reading" and "X" (to close the modal). When the "Finished Reading" button is clicked, the modal updates the end date and the read status of the corresponding book in the library array. The function then calls storeLibrary to update the "library" item in local storage, calls getLibrary to retrieve and display the updated library, and removes the modal. */
@@ -187,10 +189,9 @@ function updateModal(event) {
   console.log("TEMPID HERE: ", tempID);
 
   img.src = event.target.parentElement.getAttribute("imgURL");
-  img.alt = event.target.parentElement.getAttribute("imgALT");  
+  img.alt = event.target.parentElement.getAttribute("imgALT");
   img.height = event.target.parentElement.getAttribute("imgH");
   img.width = event.target.parentElement.getAttribute("imgW");
-  
 
   modalInput.type = "date";
   modalInput.name = "modalInput";
@@ -198,7 +199,6 @@ function updateModal(event) {
   modalInputLabel.for = "modalInput";
   modalInputLabel.textContent = "Date Finished";
   updateBtn.textContent = "Finished Reading";
-   
 
   close.textContent = "X";
   close.addEventListener("click", () => {
@@ -243,38 +243,50 @@ async function fetchImage(url) {
 }
 
 async function fetchAndSetBookCover(title, img) {
-  let tempID = 0;
-  await fetch(`https://openlibrary.org/search.json?q=title:${title}&limit=1`)
-    .then((res) => res.json())
-    .then((data) => {
-      console.log(data);
-      console.log(data.docs[0].cover_i);
-      tempID = data.docs[0].cover_i;
-    })
-    .catch((err) => console.error(err));
-
-  img = await fetchImage(`https://covers.openlibrary.org/b/id/${tempID}-M.jpg`);
-
-  console.log("img: ", img);
-  library.forEach((a) => {
-    if (title == a.title && img.src.includes("")) {
-      a.imgURL = img.src;
-      a.imgH = img.height;
-      a.imgW = img.width;
+  try {
+    let response = await fetch(
+      `https://openlibrary.org/search.json?q=title:${title}&limit=1`
+    );
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${img.status}`);
     }
-  });
-  storeLibrary();
-  updateThumbnail(title, img);
+    let data = await response.json();
+    console.log(data);
+    console.log("TEMPID WILL BE THIS:", data.docs[0].cover_i);
+    let tempID = await data.docs[0].cover_i;
+
+    if (!tempID) {
+      throw new Error(
+        `${title} cover art id not found, no cover art available`
+      );
+    }
+    img = await fetchImage(
+      `https://covers.openlibrary.org/b/id/${tempID}-M.jpg`
+    );
+
+    console.log("img: ", img);
+    library.forEach((a) => {
+      if (title == a.title) {
+        a.imgURL = img.src;
+        a.imgH = img.height;
+        a.imgW = img.width;
+      }
+    });
+    storeLibrary();
+    updateThumbnail(title, img);
+  } catch (error) {
+    console.error(error);
+  }
 }
 
-function updateThumbnail (title, img) {
+function updateThumbnail(title, img) {
   let tempR = document.getElementById(`${title}_img_td`);
   let tempChild = document.getElementById(`${title}_img_img`);
   let tempImg = document.createElement("img");
-tempImg.src = img.src;
-tempImg.alt = `${title} cover art`;
-tempImg.height = "45";
-tempImg.width = "37";
+  tempImg.src = img.src;
+  tempImg.alt = `${title} cover art`;
+  tempImg.height = "45";
+  tempImg.width = "37";
 
   tempR.removeChild(tempChild);
   tempR.appendChild(tempImg);
