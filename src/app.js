@@ -25,7 +25,7 @@ class Book {
     this.read = read.checked;
     this.start = start.value;
     this.end = end.value;
-    this.imgURL = "./assets/book.svg";
+    this.imgURL = "../assets/book.svg";
     this.imgH = "200";
     this.imgW = "200";
   }
@@ -87,18 +87,7 @@ function renderPersonalLibrary(book) {
   tempR.appendChild(tempD2);
   tempR.appendChild(tempD3);
   tempR.appendChild(tempD4);
-  tempD5.appendChild(thumbnail);
-
-  /* if (book.imgH == 25 && book.imgW == 25) {
-    thumbnail.src = `${book.imgURL}`;
-    thumbnail.alt = `${book.title} cover art`;
-    thumbnail.height = book.imgH;
-    thumbnail.width = book.imgW;
-    tempD5.appendChild(thumbnail);
-    } else {
-      thumbnail = book.imgURL;
-  tempD5.appendChild(thumbnail);
-    }; */
+  tempD5.appendChild(thumbnail);  
 }
 
 // This code is responsible for binding an event to the submit button and storing the data in the library. The bindAndStore() function takes the input data from the form and creates a new book object, which is then pushed to the library array. The renderPersonalLibrary() function is then called to render the new book object. Finally, the storeLibrary() function is called to store the library array in the localStorage.
@@ -241,7 +230,7 @@ async function fetchImage(url) {
   });
 }
 
-async function fetchAndSetBookCover(title, img) {
+async function fetchAndSetBookCover(title) {
   let control = false;
   try {
     let response = await fetch(
@@ -265,7 +254,6 @@ async function fetchAndSetBookCover(title, img) {
       `https://covers.openlibrary.org/b/id/${tempID}-M.jpg`
     );
 
-    console.log("img: ", img);
     library.forEach((a) => {
       if (title == a.title) {
         a.imgURL = img.src;
@@ -273,15 +261,19 @@ async function fetchAndSetBookCover(title, img) {
         a.imgW = img.width;
       }
     });
+    control = true;
     console.log("FETCH TWO RAN")
   } catch (error) {
     console.error(error);
     storeLibrary();
-  }
+    console.log("STORED ERROR BOOK");
+    }
   
-  console.log("STORE RAN");
+  
   if(control){
-  updateThumbnailAndParent(title, img); 
+    console.log("CONTROL RAN");
+  updateThumbnailAndParent(title, img);
+  storeLibrary(); 
   }
 }
 
