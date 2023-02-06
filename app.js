@@ -242,6 +242,7 @@ async function fetchImage(url) {
 }
 
 async function fetchAndSetBookCover(title, img) {
+  let control = false;
   try {
     let response = await fetch(
       `https://openlibrary.org/search.json?q=title:${title}&limit=1`
@@ -277,28 +278,29 @@ async function fetchAndSetBookCover(title, img) {
     console.error(error);
     storeLibrary();
   }
-  storeLibrary();
-  console.log("STORE RAN")
+  
+  console.log("STORE RAN");
+  if(control){
   updateThumbnailAndParent(title, img); 
+  }
 }
 
 function updateThumbnailAndParent(title, img) {
-  let tempR = document.getElementById(`${title}_img_td`);
+  let tempTD5 = document.getElementById(`${title}_img_td`);
   let tempChild = document.getElementById(`${title}_img_img`);
   let tempImg = document.createElement("img");
+  tempTD5.removeChild(tempChild);
   tempImg.src = img.src;
   tempImg.alt = `${title} cover art`;
   tempImg.height = "45";
   tempImg.width = "37";
 
 /*   This is bugged right now, when built and deployed, it needs to re-render the entire tr to get attributes.
- */
-  tempR.parentElement.setAttribute("imgURL", `${img.src}`);
-  tempR.parentElement.setAttribute("imgALT", `${title} cover art`);
-  tempR.parentElement.setAttribute("imgH", `${img.height}`);
-  tempR.parentElement.setAttribute("imgW", `${img.width}`);
-  tempR.parentElement.id = `${title}`;
-
-  tempR.removeChild(tempChild);
-  tempR.appendChild(tempImg);  
+ */  
+  tempTD5.parentElement.setAttribute("imgURL", `${img.src}`);
+  tempTD5.parentElement.setAttribute("imgALT", `${title} cover art`);
+  tempTD5.parentElement.setAttribute("imgH", `${img.height}`);
+  tempTD5.parentElement.setAttribute("imgW", `${img.width}`);
+  tempTD5.parentElement.id = `${title}`;  
+  tempTD5.appendChild(tempImg);  
 }
