@@ -513,8 +513,20 @@ video {
   --tw-backdrop-sepia:  ;
 }
 
+.flex {
+  display: flex;
+}
+
 .table {
   display: table;
+}
+
+.table-fixed {
+  table-layout: fixed;
+}
+
+.items-center {
+  align-items: center;
 }
 
 * {
