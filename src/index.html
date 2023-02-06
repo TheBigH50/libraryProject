@@ -13,35 +13,74 @@
       <h1>"Reading Tracker"</h1>
     </header>
 
-    <main class="flex items-center">
-      <article>
-        <section id="inputForm" class="flex items items-center">
+    <main class="">
+      <article class="flex justify-center">
+        <section id="inputForm" class="mb-3 xl:w-96">
           <h2>Log a book</h2>
-          <label for="title"
-            >Title: <input name="title" id="title" type="text"
+          <label for="title" class="form-label inline-block mb-2 text-gray-700"
+            >Title:
+            <input
+              name="title"
+              id="title"
+              type="text"
+              class="form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
           /></label>
-          <label for="author"
-            >Author: <input name="author" id="author" type="text"
+          <label for="author" class="form-label inline-block mb-2 text-gray-700"
+            >Author:
+            <input
+              name="author"
+              id="author"
+              type="text"
+              class="form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
           /></label>
-          <label for="pageCount"
-            >Page Count: <input name="pageCount" id="pageCount" type="number"
+          <label
+            for="pageCount"
+            class="form-label inline-block mb-2 text-gray-700"
+            >Page Count:
+            <input
+              name="pageCount"
+              id="pageCount"
+              type="number"
+              class="form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
           /></label>
-          <label for="read"
+          <label for="read" class="form-label inline-block mb-2 text-gray-700"
             >Finished Reading?
-            <input type="checkbox" name="read" id="checkBox" checked
+            <input
+              type="checkbox"
+              name="read"
+              id="checkBox"
+              class="form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
+              checked
           /></label>
-          <label for="startDate"
-            >Date Started: <input type="date" name="startDate" id="startDate"
+          <label
+            for="startDate"
+            class="form-label inline-block mb-2 text-gray-700"
+            >Date Started:
+            <input
+              type="date"
+              name="startDate"
+              id="startDate"
+              class="form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
           /></label>
-          <label for="endDate"
-            >Date Finished: <input type="date" name="endDate" id="endDate"
+          <label
+            for="endDate"
+            class="form-label inline-block mb-2 text-gray-700"
+            >Date Finished:
+            <input
+              type="date"
+              name="endDate"
+              id="endDate"
+              class="form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
           /></label>
           <button type="submit" id="addBook">Add Book</button>
         </section>
 
-        <section id="bookTableSection">
+        <section
+          id="bookTableSection"
+          class="table-fixed border-spacing-1 font-serif text-orange-700"
+        >
           <h2>Personal Library</h2>
-          <table id="bookTable" class="table-fixed">
+          <table id="bookTable">
             <caption id="btCaption">
               Books Overview
             </caption>
