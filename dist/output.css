@@ -513,6 +513,39 @@ video {
   --tw-backdrop-sepia:  ;
 }
 
+.absolute {
+  position: absolute;
+}
+
+.relative {
+  position: relative;
+}
+
+.inset-x-0 {
+  left: 0px;
+  right: 0px;
+}
+
+.left-0 {
+  left: 0px;
+}
+
+.bottom-0 {
+  bottom: 0px;
+}
+
+.left-auto {
+  left: auto;
+}
+
+.left-1\/2 {
+  left: 50%;
+}
+
+.left-1\/4 {
+  left: 25%;
+}
+
 .m-0 {
   margin: 0px;
 }
@@ -533,6 +566,10 @@ video {
   display: inline-block;
 }
 
+.inline {
+  display: inline;
+}
+
 .flex {
   display: flex;
 }
@@ -541,8 +578,20 @@ video {
   display: table;
 }
 
+.h-16 {
+  height: 4rem;
+}
+
+.h-32 {
+  height: 8rem;
+}
+
 .w-full {
   width: 100%;
+}
+
+.w-32 {
+  width: 8rem;
 }
 
 .table-fixed {
@@ -555,12 +604,36 @@ video {
   border-spacing: var(--tw-border-spacing-x) var(--tw-border-spacing-y);
 }
 
-.items-center {
-  align-items: center;
+.flex-row {
+  flex-direction: row;
+}
+
+.justify-end {
+  justify-content: flex-end;
 }
 
 .justify-center {
   justify-content: center;
+}
+
+.justify-evenly {
+  justify-content: space-evenly;
+}
+
+.justify-items-end {
+  justify-items: end;
+}
+
+.justify-items-center {
+  justify-items: center;
+}
+
+.justify-items-stretch {
+  justify-items: stretch;
+}
+
+.justify-self-center {
+  justify-self: center;
 }
 
 .rounded {
@@ -585,8 +658,28 @@ video {
   background-color: rgb(255 255 255 / var(--tw-bg-opacity));
 }
 
+.bg-cover {
+  background-size: cover;
+}
+
+.bg-contain {
+  background-size: contain;
+}
+
+.bg-fixed {
+  background-attachment: fixed;
+}
+
+.bg-local {
+  background-attachment: local;
+}
+
 .bg-clip-padding {
   background-clip: padding-box;
+}
+
+.bg-no-repeat {
+  background-repeat: no-repeat;
 }
 
 .px-3 {
@@ -617,14 +710,24 @@ video {
   font-weight: 400;
 }
 
+.text-orange-700 {
+  --tw-text-opacity: 1;
+  color: rgb(194 65 12 / var(--tw-text-opacity));
+}
+
+.text-green-800 {
+  --tw-text-opacity: 1;
+  color: rgb(22 101 52 / var(--tw-text-opacity));
+}
+
 .text-gray-700 {
   --tw-text-opacity: 1;
   color: rgb(55 65 81 / var(--tw-text-opacity));
 }
 
-.text-orange-700 {
+.text-orange-500 {
   --tw-text-opacity: 1;
-  color: rgb(194 65 12 / var(--tw-text-opacity));
+  color: rgb(249 115 22 / var(--tw-text-opacity));
 }
 
 .transition {
@@ -703,3 +806,4 @@ input::-webkit-inner-spin-button {
     width: 24rem;
   }
 }
+
