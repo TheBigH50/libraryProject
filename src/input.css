@@ -7,8 +7,7 @@
 }
 
 body {
-  margin: 0;
-  
+  margin: 0;  
 }
 
 #updateModalBack {
@@ -31,14 +30,6 @@ body {
   background-color: bisque;
 }
 
-#inputForm {
-  /* display: flex;
-  flex-direction: column; */
-  max-width: 150px;
-}
 
-input::-webkit-outer-spin-button,
-input::-webkit-inner-spin-button {
-  display: none;
-}
+
 

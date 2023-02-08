@@ -58,14 +58,14 @@ function renderPersonalLibrary(book) {
   thumbnail.height = "45";
   thumbnail.width = "45";
   thumbnail.id = `${book.title}_img_img`;
-  thumbnail.className = "rounded "
+  thumbnail.className = "rounded"
   tempD5.id = `${book.title}_img_td`;
-  tempR.className = ""
-  tempD1.className = " "
-  tempD2.className = "  "
-  tempD3.className = "  "
-  tempD4.className = "  "
-  tempD5.className = "  "
+  tempR.className = "!bg-red-400"
+  tempD1.className = "bg-inherit"
+  tempD2.className = "bg-inherit"
+  tempD3.className = "bg-inherit"
+  tempD4.className = "bg-inherit"
+  tempD5.className = "bg-inherit"
   tempR.setAttribute("imgURL", `${book.imgURL}`);
   tempR.setAttribute("imgALT", `${book.title} cover art`);
   tempR.setAttribute("imgH", `${book.imgH}`);

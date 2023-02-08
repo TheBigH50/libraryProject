@@ -585,10 +585,8 @@ video {
   table-layout: fixed;
 }
 
-.border-spacing-1 {
-  --tw-border-spacing-x: 0.25rem;
-  --tw-border-spacing-y: 0.25rem;
-  border-spacing: var(--tw-border-spacing-x) var(--tw-border-spacing-y);
+.border-collapse {
+  border-collapse: collapse;
 }
 
 .flex-col {
@@ -623,6 +621,11 @@ video {
 .bg-amber-50 {
   --tw-bg-opacity: 1;
   background-color: rgb(255 251 235 / var(--tw-bg-opacity));
+}
+
+.bg-red-400 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(248 113 113 / var(--tw-bg-opacity));
 }
 
 .bg-white {
@@ -722,15 +725,9 @@ body {
   background-color: bisque;
 }
 
-#inputForm {
-  /* display: flex;
-  flex-direction: column; */
-  max-width: 150px;
-}
-
-input::-webkit-outer-spin-button,
-input::-webkit-inner-spin-button {
-  display: none;
+.hover\:bg-gray-50:hover {
+  --tw-bg-opacity: 1;
+  background-color: rgb(249 250 251 / var(--tw-bg-opacity));
 }
 
 .focus\:border-blue-600:focus {
@@ -772,4 +769,22 @@ input::-webkit-inner-spin-button {
     width: 24rem;
   }
 }
+
+.\[\&\>\*\:hover\]\:bg-gray-50>*:hover {
+  --tw-bg-opacity: 1;
+  background-color: rgb(249 250 251 / var(--tw-bg-opacity));
+}
+
+.\[\&\>\*\:hover\]\:bg-amber-50>*:hover {
+  --tw-bg-opacity: 1;
+  background-color: rgb(255 251 235 / var(--tw-bg-opacity));
+}
+
+.\[\&\>\*\:hover\]\:bg-amber-100>*:hover {
+  --tw-bg-opacity: 1;
+  background-color: rgb(254 243 199 / var(--tw-bg-opacity));
+}
+
+
+
 
