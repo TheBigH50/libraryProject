@@ -56,14 +56,21 @@ function renderPersonalLibrary(book) {
   thumbnail.src = `${book.imgURL}`;
   thumbnail.alt = `${book.title} cover art`;
   thumbnail.height = "45";
-  thumbnail.width = "37";
+  thumbnail.width = "45";
   thumbnail.id = `${book.title}_img_img`;
+  thumbnail.className = "rounded "
   tempD5.id = `${book.title}_img_td`;
+  tempR.className = ""
+  tempD1.className = " "
+  tempD2.className = "  "
+  tempD3.className = "  "
+  tempD4.className = "  "
+  tempD5.className = "  "
   tempR.setAttribute("imgURL", `${book.imgURL}`);
   tempR.setAttribute("imgALT", `${book.title} cover art`);
   tempR.setAttribute("imgH", `${book.imgH}`);
   tempR.setAttribute("imgW", `${book.imgW}`);
-
+  
   console.log("pass the img?", tempR.getAttribute("imgURL"));
   tempR.id = `${book.title}`;
   console.log(tempR.id);
