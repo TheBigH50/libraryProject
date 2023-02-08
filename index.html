@@ -8,16 +8,16 @@
     <link rel="stylesheet" href="./dist/output.css" />
     <script src="./src/app.js" defer></script>
   </head>
-  <body id="modalHere" class="bg-cover bg-no-repeat" style="background-image: url(./assets/aaron-burden-H8s0PF2rcQs-unsplash.jpg)">
-    <header>
-      <h1 class="flex justify-center">"Reading Tracker"</h1>
+  <body id="modalHere" class="flex flex-col bg-amber-50 h-screen">
+    <header class="flex justify-center mb-5">
+      <h1 class="flex text-4xl mt-5">Reading Tracker</h1>
     </header>
 
-    <main class="flex-row justify-items-center">
-      <article class="flex justify-center">
-        <section id="inputForm" class="mb-3 xl:w-96">
-          <h2 class="font-serif text-orange-700">Log a book</h2>
-          <label for="title" class="form-label mb-2 text-green-800"
+    <main class="">
+      <article class="flex flex-col md:flex-row">
+        <section id="inputForm" class="flex flex-col mb-3 self-center md:self-start xl:w-96 ml-5 mr-5">
+          <h2 class="font-serif text-orange-700 self-center flex mb-3.5 mt-2.5 md:mt-0">Log a book</h2>
+          <label for="title" class="form-label mb-2 text-gray-700"
             >Title:
             <input
               name="title"
@@ -77,23 +77,17 @@
 
         <section
           id="bookTableSection"
-          class="table-fixed border-spacing-1 font-serif text-orange-500"
+          class="flex flex-col table-fixed border-spacing-1 font-serif text-orange-500"
         >
-          <h2>Personal Library</h2>
-          <table id="bookTable">
-            <caption id="btCaption">
-              Books Overview
-            </caption>
+          <h2 class="flex self-center mb-4 mt-2.5 md:mt-0">Personal Library</h2>
+          <table id="bookTable" class="flex flex-col">            
           </table>
-        </section>
-        <h2>Library</h2>
+        </section>        
       </article>
     </main>
+    <footer class="flex flex-col">
+      <h3 class="flex self-center">Built by Harrison Fangmeier 2023</h3>      
+    </footer>    
   </body>
-  <footer class="absolute bottom-0 left-1/4">
-    <h3 class="flex-row justify-items-center">Built by Harrison Fangmeier 2023</h3>
-    <p class="inline-block">*This site uses local storage to save your reading list* *Background Photo by <a href="https://unsplash.com/@aaronburden?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Aaron Burden</a> on <a href="https://unsplash.com/photos/H8s0PF2rcQs?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
-  *
-    </p>
-  </footer>
+  
 </html>
