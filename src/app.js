@@ -58,19 +58,19 @@ function renderPersonalLibrary(book) {
   thumbnail.height = "45";
   thumbnail.width = "45";
   thumbnail.id = `${book.title}_img_img`;
-  thumbnail.className = "rounded"
+  thumbnail.className = "rounded";
   tempD5.id = `${book.title}_img_td`;
-  tempR.className = "!bg-red-400"
-  tempD1.className = "bg-inherit"
-  tempD2.className = "bg-inherit"
-  tempD3.className = "bg-inherit"
-  tempD4.className = "bg-inherit"
-  tempD5.className = "bg-inherit"
+  //tempR.className = ""
+  tempD1.className = "text-center";
+  tempD2.className = "text-center";
+  tempD3.className = "text-center";
+  tempD4.className = "text-center";
+  tempD5.className = "text-center bg-transparent";
   tempR.setAttribute("imgURL", `${book.imgURL}`);
   tempR.setAttribute("imgALT", `${book.title} cover art`);
   tempR.setAttribute("imgH", `${book.imgH}`);
   tempR.setAttribute("imgW", `${book.imgW}`);
-  
+
   console.log("pass the img?", tempR.getAttribute("imgURL"));
   tempR.id = `${book.title}`;
   console.log(tempR.id);
@@ -94,7 +94,13 @@ function renderPersonalLibrary(book) {
   tempR.appendChild(tempD2);
   tempR.appendChild(tempD3);
   tempR.appendChild(tempD4);
-  tempD5.appendChild(thumbnail);  
+  tempD5.appendChild(thumbnail);
+
+  startDate.value = currentDate;
+  endDate.value = currentDate;
+  titleInput.value = "";
+  authorInput.value = "";
+  pageCount.value = "";
 }
 
 // This code is responsible for binding an event to the submit button and storing the data in the library. The bindAndStore() function takes the input data from the form and creates a new book object, which is then pushed to the library array. The renderPersonalLibrary() function is then called to render the new book object. Finally, the storeLibrary() function is called to store the library array in the localStorage.
@@ -256,7 +262,7 @@ async function fetchAndSetBookCover(title) {
         `${title} cover art id not found, no cover art available`
       );
     }
-    console.log("FETCH ONE RAN")
+    console.log("FETCH ONE RAN");
     img = await fetchImage(
       `https://covers.openlibrary.org/b/id/${tempID}-M.jpg`
     );
@@ -269,18 +275,17 @@ async function fetchAndSetBookCover(title) {
       }
     });
     control = true;
-    console.log("FETCH TWO RAN")
+    console.log("FETCH TWO RAN");
   } catch (error) {
     console.error(error);
     storeLibrary();
     console.log("STORED ERROR BOOK");
-    }
-  
-  
-  if(control){
+  }
+
+  if (control) {
     console.log("CONTROL RAN");
-  updateThumbnailAndParent(title, img);
-  storeLibrary(); 
+    updateThumbnailAndParent(title, img);
+    storeLibrary();
   }
 }
 
@@ -292,14 +297,16 @@ function updateThumbnailAndParent(title, img) {
   tempImg.src = img.src;
   tempImg.alt = `${title} cover art`;
   tempImg.height = "45";
-  tempImg.width = "37";
+  tempImg.width = "45";
+  tempImg.className = "rounded hidden";
+  tempTD5.className = "hidden";
 
-/*   This is bugged right now, when built and deployed, it needs to re-render the entire tr to get attributes.
- */  
+  /*   This is bugged right now, when built and deployed, it needs to re-render the entire tr to get attributes.
+   */
   tempTD5.parentElement.setAttribute("imgURL", `${img.src}`);
   tempTD5.parentElement.setAttribute("imgALT", `${title} cover art`);
   tempTD5.parentElement.setAttribute("imgH", `${img.height}`);
   tempTD5.parentElement.setAttribute("imgW", `${img.width}`);
-  tempTD5.parentElement.id = `${title}`;  
-  tempTD5.appendChild(tempImg);  
+  tempTD5.parentElement.id = `${title}`;
+  tempTD5.appendChild(tempImg);
 }

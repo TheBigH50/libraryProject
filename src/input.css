@@ -7,15 +7,15 @@
 }
 
 body {
-  margin: 0;  
+  margin: 0;
 }
 
 #updateModalBack {
   position: absolute;
   top: 0;
   left: 0;
-  min-height: 100vh;
-  min-width: 100vw;
+  min-height: 200vh;
+  min-width: 200vw;
   z-index: 1;
   background-color: rgba(62, 61, 97, 0.678);
 }
@@ -30,6 +30,37 @@ body {
   background-color: bisque;
 }
 
+/* The following 3 rulesets fix the null modal issue of selecting the img, keeps the tr and img under the td's while always displaying the img */
 
+tr {
+  position: relative;
+  z-index: -2;
+}
 
+tr > td {
+  background-color: transparent!;
+}
+td > img {
+  position: relative;
+  z-index: -1;
+}
 
+/* the following input rules remove arrows from number input on all browsers */
+
+input[type="number"] {
+  -moz-appearance: textfield;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Hide thumbnails when screen size is too small to look good */
+
+@media only screen and (max-width: 500px) {
+  tr img {
+    display: none;
+  }
+}

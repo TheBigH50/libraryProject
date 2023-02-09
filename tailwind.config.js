@@ -2,7 +2,14 @@
 module.exports = {
   content: ["./*.{html,js}"],
   theme: {
-    extend: {},
+    extend: {
+      fontFamily: {
+        EB_Garamond: ["EB_Garamond", "serif"],
+      },
+      maxWidth: {
+        inputMax: "15rem",
+      },
+    },
   },
   plugins: [],
-}
+};
