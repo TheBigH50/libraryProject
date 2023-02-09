@@ -17,7 +17,7 @@ body {
   min-height: 100vh;
   min-width: 100vw;
   z-index: 1;
-  background-color: rgba(120, 53, 15, 0.678);
+  background-color: rgba(120, 53, 15, 0.75);
 }
 
 #updateModalCard {
