@@ -55,6 +55,7 @@ body {
   align-self: center;
   margin-bottom: 1rem;
   order: 2;
+  padding: 0.25rem;
 }
 
 #modalForm {
