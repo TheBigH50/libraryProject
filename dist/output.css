@@ -513,6 +513,10 @@ video {
   --tw-backdrop-sepia:  ;
 }
 
+.z-0 {
+  z-index: 0;
+}
+
 .m-0 {
   margin: 0px;
 }
@@ -734,24 +738,83 @@ body {
   margin: 0;
 }
 
+#addBook {
+  box-shadow: 15px 5px 10px 0.5px rgb(253, 237, 174);
+}
+
 #updateModalBack {
-  position: absolute;
-  top: 0;
-  left: 0;
-  min-height: 200vh;
-  min-width: 200vw;
-  z-index: 1;
-  background-color: rgba(62, 61, 97, 0.678);
+  display: flex;
+  position: fixed;
+  min-height: 100vh;
+  min-width: 100vw;
+  background-color: rgba(120, 53, 15, 0.75);
+  justify-self: flex-start;
+  align-self: center;
+  z-index: 3;
+  justify-content: center;
+  align-items: center;
 }
 
 #updateModalCard {
-  position: fixed;
-  top: 25vh;
-  left: 25vw;
-  min-height: 50vh;
-  min-width: 50vw;
+  display: flex;
+  flex-direction: column;
+  height: 50%;
+  width: 50%;
+  max-width: 500px;
+  padding: 0.5rem;
   z-index: 2;
-  background-color: bisque;
+  background-color: rgb(255, 251, 235);
+  border-radius: 0.5rem;
+}
+
+#modalClose {
+  display: flex;
+  align-self: flex-end;
+  font-size: 1.5rem;
+  font-weight: 700;
+  line-height: 60%;
+  background-color: transparent;
+  order: 1;
+}
+
+#modalImg {
+  border-radius: 0.5rem;
+  display: flex;
+  align-self: center;
+  margin-bottom: 1rem;
+  order: 2;
+}
+
+#modalForm {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  order: 3;
+}
+
+@media only screen and (min-width: 768px) {
+  #updateBtn {
+    padding: 2.5px;
+    border-radius: 2rem;
+    box-shadow: 15px 5px 10px 0.5px rgb(253, 237, 174);
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  #updateBtn {
+    text-decoration: underline;
+  }
+}
+
+#modalInput {
+  background-color: #fffbeb;
+  border-radius: 0.25rem;
+}
+
+#modalInput:focus {
+  background-color: rgb(254 243 199);
+  border: 1px solid rgb(180 83 9);
+  outline: none;
 }
 
 /* The following 3 rulesets fix the null modal issue of selecting the img, keeps the tr and img under the td's while always displaying the img */
@@ -759,6 +822,9 @@ body {
 tr {
   position: relative;
   z-index: -2;
+  padding: 2.5px;
+  border-radius: 0.25rem;
+  box-shadow: 15px 5px 10px 0.5px rgb(253, 237, 174);
 }
 
 tr > td {
@@ -787,6 +853,12 @@ input::-webkit-inner-spin-button {
 @media only screen and (max-width: 500px) {
   tr img {
     display: none;
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  #modalClose {
+    font-size: 1rem;
   }
 }
 
@@ -879,17 +951,19 @@ input::-webkit-inner-spin-button {
   }
 }
 
-@media (min-width: 1280px) {
-  .xl\:w-96 {
-    width: 24rem;
-  }
-}
-
 .\[\&\>\*\]\:text-center>* {
   text-align: center;
 }
 
-.\[\&\>\*\:hover\]\:bg-amber-100>*:hover {
-  --tw-bg-opacity: 1;
-  background-color: rgb(254 243 199 / var(--tw-bg-opacity));
+@media (min-width: 768px) {
+  .md\:\[\&\>\*\:hover\]\:bg-amber-100>*:hover {
+    --tw-bg-opacity: 1;
+    background-color: rgb(254 243 199 / var(--tw-bg-opacity));
+  }
+}
+
+@media (min-width: 1280px) {
+  .xl\:w-96 {
+    width: 24rem;
+  }
 }

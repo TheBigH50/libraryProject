@@ -27,7 +27,7 @@ class Book {
     this.end = end.value;
     this.imgURL = "../assets/book.svg";
     this.imgH = "200";
-    this.imgW = "200";
+    this.imgW = "150";
   }
 }
 
@@ -55,12 +55,11 @@ function renderPersonalLibrary(book) {
 
   thumbnail.src = `${book.imgURL}`;
   thumbnail.alt = `${book.title} cover art`;
-  thumbnail.height = "45";
+  //thumbnail.height = "45";
   thumbnail.width = "45";
   thumbnail.id = `${book.title}_img_img`;
   thumbnail.className = "rounded";
   tempD5.id = `${book.title}_img_td`;
-  //tempR.className = ""
   tempD1.className = "text-center";
   tempD2.className = "text-center";
   tempD3.className = "text-center";
@@ -193,14 +192,21 @@ function updateModal(event) {
   img.alt = event.target.parentElement.getAttribute("imgALT");
   img.height = event.target.parentElement.getAttribute("imgH");
   img.width = event.target.parentElement.getAttribute("imgW");
+  img.id = "modalImg";
+  img.className = "";
 
   modalInput.type = "date";
   modalInput.name = "modalInput";
   modalInput.id = "modalInput";
   modalInputLabel.for = "modalInput";
-  modalInputLabel.textContent = "Date Finished";
-  updateBtn.textContent = "Finished Reading";
+  modalInputLabel.textContent = "Date Finished:";
 
+  updateBtn.textContent = "Finished Reading";
+  updateBtn.id = "updateBtn";
+
+  modalForm.id = "modalForm";
+
+  close.id = "modalClose";
   close.textContent = "X";
   close.addEventListener("click", () => {
     updateModalBack.remove();
@@ -296,7 +302,7 @@ function updateThumbnailAndParent(title, img) {
   tempTD5.removeChild(tempChild);
   tempImg.src = img.src;
   tempImg.alt = `${title} cover art`;
-  tempImg.height = "45";
+  //tempImg.height = "45";
   tempImg.width = "45";
   tempImg.className = "rounded hidden";
   tempTD5.className = "hidden";
