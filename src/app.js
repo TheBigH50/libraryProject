@@ -75,7 +75,7 @@ function renderPersonalLibrary(book) {
   console.log(tempR.id);
 
   tempR.addEventListener("click", updateModal);
-tempR.addEventListener("touchend", updateModal);
+  //tempR.addEventListener("touchend", updateModal);
   tempD1.textContent = `${book.title}, ${book.author}`;
   tempD2.textContent = `${book.pages} Pages`;
 
